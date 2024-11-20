@@ -15,7 +15,12 @@ public As1_Crop(String n, int y, String u, double p){
 
 }
 public String toString(){
-     return name + " , " + yield + " , " + units + ", " + price;
+     return name + " , " + yield + " , " + units + ", " + price + ", " + acres;
+}
+
+
+public void setAcres( int number){
+    this.acres = number;
 }
 
 
