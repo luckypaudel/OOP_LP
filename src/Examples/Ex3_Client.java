@@ -16,6 +16,14 @@ public class Ex3_Client {
         hasDog = d;
         outstandingFees = 0;
     }//constructor
+    public Ex3_Client( String n, String a, int l, boolean d
+            , double f ){
+        name = n;
+        address = a;
+        lawnSize = l;
+        hasDog = d;
+        outstandingFees = f;
+    }//constructor
 
     public String toString(){
         return name + "  " +  address + "  " + lawnSize + "  " + hasDog + "  " + outstandingFees;
@@ -69,6 +77,7 @@ public class Ex3_Client {
 
     }
 
-
-
+    public String getAddress() {
+        return address;
+    }
 }//class
