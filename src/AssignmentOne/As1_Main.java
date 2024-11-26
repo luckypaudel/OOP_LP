@@ -5,6 +5,7 @@ import Examples.Ex3_Client;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.io.*;
 
 public class As1_Main {
     public static void run() {
@@ -30,16 +31,21 @@ public class As1_Main {
 
 
             if (choice == 1) {
-                for (As1_Crop cropTemp : allCrops) {
-                    System.out.println(cropTemp);
+                for (int i = 0; i < allCrops.size(); i++) {
+                    allCrops.toString();
                 }
 
             }
-            if (choice == 2) {
-                System.out.println("Enter a crop name");
-                int foundClient = searchByName(allCrops, name);
 
-            }
+           if (choice == 2) {
+                System.out.println("Enter a crop name");
+                String name = Library.input.nextLine();
+            int foundClient = searchByName(allCrops, name);
+           if(foundClient == -1){
+               System.out.println("Crop was not found, Try again!");
+           }
+
+           }
             if (choice == 3) {
                 System.out.println("Cool dadio!");
             }
@@ -56,17 +62,16 @@ public class As1_Main {
 
     public static int searchByName(ArrayList<As1_Crop> list, String searchTerm) {
         for (int i = 0; i < list.size(); i++) {
-            if (searchTerm.equalsIgnoreCase(list.get(i).getallClients())) {
+            if (searchTerm.equalsIgnoreCase(list.get(i).getallNames())) {
                 return i;
             }
         }
         return -1;
     }
 
-    public String getCrop() {
-        return crop;
-    }
-}//class
+
+
+//}//class
 }
 
 

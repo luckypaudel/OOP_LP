@@ -80,4 +80,16 @@ public class Ex3_Client {
     public String getAddress() {
         return address;
     }
+
+    public int getLawnSize() {
+        return lawnSize;
+    }
+
+    public boolean getHasDog() {
+        return hasDog;
+    }
+
+    public double getOutstandingFees() {
+        return outstandingFees;
+    }
 }//class
