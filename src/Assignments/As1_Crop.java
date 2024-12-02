@@ -1,6 +1,5 @@
-package AssignmentOne;
-import java.io.*;
-import java.util.ArrayList;
+package Assignments;
+
 public class As1_Crop {
     private String name;
     private double yield;
@@ -16,27 +15,31 @@ public As1_Crop(String n, int y, String u, double p){
 
 }
 public String toString(){
-     return name + " , " + yield + " , " + units + ", " + price + ", " + acres;
+
+    return name + " , " + yield + " , " + units + ", " + price + ", " + acres;
 }
+
 
 
 public void setAcres( int number){
+
     this.acres = number;
 }
-public double harvest(String n , int y, String u, double p){
-    double total = p * y * acres;
+public double harvest(){
+
+    return price * yield * acres;
+
+
 }
 
 
 
 
 public String getallNames(){
+
     return name;
 }
-public double harvest(){
 
-    return 0;
-}
 
     public String getName() {
         return name;
