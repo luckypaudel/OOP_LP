@@ -9,7 +9,7 @@ public class As3_Team {
     private int gamesPlayed;
 
 
-    public As3_Team(String n, String c, String d, int w, int l, int gp){
+    public As3_Team(String n, String c, String d, int w, int l, int gp) {
         Nickname = n;
         City = c;
         Division = d;
@@ -18,9 +18,41 @@ public class As3_Team {
         gamesPlayed = gp;
 
     }
-    public void printMe(){
-//        System.out.println("Team: " + Nickname, "City :" + City, "Division: " + Division, "Wins: " + Wins, "Losses  " +  Losses, "Games Played " + gamesPlayed );
+
+    public String toString() {
+        return " Name: " + Nickname + " City: " + City + " Division: " + Division + " Wins: " + Wins + " Losses: " + Losses + " Games Played: " + gamesPlayed;
     }
 
+    public void findAverage(int size, int total) {
 
+    }
+
+    public String getNickname() {
+        return Nickname;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public int getWins() {
+        return Wins;
+    }
+
+    public int getLosses() {
+        return Losses;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
+
+    public void divisionFinder() {
+
+    }
+
+    public String getDivision() {
+        return Division;
+    }
 }
+

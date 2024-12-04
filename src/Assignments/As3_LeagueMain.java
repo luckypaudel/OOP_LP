@@ -8,42 +8,54 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class As3_LeagueMain {
-public static void run() {
-    ArrayList<As3_Team> allTeams = new ArrayList<>();
+    public static void run() {
+        ArrayList<As3_Team> allTeams = new ArrayList<>();
 
-    loadFile("data/TeamsData.csv", allTeams);
-    while(true) {
+        loadFile("data/TeamsData.csv", allTeams);
+        while (true) {
 
-        System.out.println("Press 1 to print a list of teams\nPress 2 to for country\nPress 3 for jazzy grooves\nPress 4 to exit.");
+            System.out.println("Press 1 to print a list of teams\nPress 2 to for country\nPress 3 for jazzy grooves\nPress 4 to exit.");
 
 
-         int choice = Library.input.nextInt();
-         Library.input.nextLine();
+            int choice = Library.input.nextInt();
+            Library.input.nextLine();
 
-        if (choice == 1) {
-            System.out.println("Not implemented Yet");
+            if (choice == 1) {
+                for (int i = 0; i < allTeams.size(); i++) {
+                    System.out.println(allTeams.get(i));
+                }
 
-        }
-        if (choice == 2) {
-            System.out.println("Not implemented Yet");
-        }
-        if (choice == 3) {
-            System.out.println("Not implemented Yet");
-        }
-        if (choice == 4) {
-            System.out.println("Not implemented Yet");
-        }
-        if (choice == 5) {
-            System.out.println("Not implemented Yet");
-        }
-        if (choice == 6) {
-            break;
-        }
+            }
+            if (choice == 2) {
+                System.out.println("Find lowest or highest");
+                System.out.println("Not implemented yet");
+            }
+            if (choice == 3) {
+                System.out.println(" What division are you looking for? ");
+                String response = Library.input.nextLine();
+            for(int i = 0; i<allTeams.size(); i++){
+                if(allTeams.get(i).getDivision().equals(response));
 
-        System.out.println();
 
-    }//while
-}
+                System.out.println(allTeams.get(i));
+            }
+
+                System.out.println("Not implemented Yet");
+            }
+            if (choice == 4) {
+                System.out.println("Not implemented Yet");
+            }
+            if (choice == 5) {
+                System.out.println("Not implemented Yet");
+            }
+            if (choice == 6) {
+                break;
+            }
+
+            System.out.println();
+
+        }//while
+    }
 
     public static void loadFile(String filename, ArrayList<As3_Team> list) {
 
@@ -58,7 +70,7 @@ public static void run() {
 //the next line is customized for whatever class you are creating.
 //Here we create a new STUDENT so there are 5 variables
 //Unfortunately, you need to Parse any variable that is not a String.  Integers, doubles and booleans are all demonstrated below.
-                list.add(new As3_Team(tempArray[0], tempArray[1], tempArray[3], Integer.parseInt(tempArray[2]),Integer.parseInt(tempArray[4] ), Integer.parseInt(tempArray[5] ) ));
+                list.add(new As3_Team(tempArray[0], tempArray[1], tempArray[3], Integer.parseInt(tempArray[2]), Integer.parseInt(tempArray[4]), Integer.parseInt(tempArray[5])));
 
             }
         } catch (IOException e) {

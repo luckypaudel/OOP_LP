@@ -3,6 +3,7 @@ public class Main {
 //Examples.Ex1_ArrayLists.run();
 ////        Examples.Ex2_Main.run();
 //        Examples.Ex3_LawnMain.run();
-        Assignments.As1_Main.run();
+//        Assignments.As1_Main.run();
+    Assignments.As3_LeagueMain.run();
     }
 }
