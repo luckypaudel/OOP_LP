@@ -7,19 +7,50 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class As3_LeagueMain {
+    static ArrayList<As3_Team> allTeams;
     public static void run() {
-        ArrayList<As3_Team> allTeams = new ArrayList<>();
+
+       allTeams = new ArrayList<>();
         loadFile("data/TeamsData.csv", allTeams);
+
+
+        teamFromName(allTeams, "Oilers").addPlayer(new As3_Player("Leon Draisaitl", 1003, 28, 40));
+        teamFromName(allTeams, "Oilers").addPlayer(new As3_Player("Ryan Nugent-Hopkins", 1004, 18, 25));
+        teamFromName(allTeams, "Oilers").addPlayer(new As3_Player("Zach Hyman", 1005, 15, 32));
+        teamFromName(allTeams, "Oilers").addPlayer(new As3_Player("Evander Kane", 1006, 20, 22));
+        teamFromName(allTeams, "Oilers").addPlayer(new As3_Player("Connor McDavid", 1001, 25, 30));
+
+        teamFromName(allTeams, "Maple Leafs").addPlayer(new As3_Player("Auston Matthews", 1002, 35, 28));
+        teamFromName(allTeams, "Maple Leafs").addPlayer(new As3_Player("Mitch Marner", 1007, 21, 25));
+        teamFromName(allTeams, "Capitals").addPlayer(new As3_Player("Alex Ovechkin", 1014, 38, 25));
+        teamFromName(allTeams, "Capitals").addPlayer(new As3_Player("John Carlson", 1015, 34, 22));
+        teamFromName(allTeams, "Penguins").addPlayer(new As3_Player("Sidney Crosby", 1026, 37, 30));
+
+        teamFromName(allTeams, "Blackhawks").addPlayer(new As3_Player("Patrick Kane", 1014, 35, 25));
+        teamFromName(allTeams, "Blackhawks").addPlayer(new As3_Player("Jonathan Toews", 1016, 36, 20));
+        teamFromName(allTeams, "Flames").addPlayer(new As3_Player("Johnny Gaudreau", 1023, 23, 27));
+        teamFromName(allTeams, "Flames").addPlayer(new As3_Player("Matthew Tkachuk", 1024, 26, 22));
+        teamFromName(allTeams, "Penguins").addPlayer(new As3_Player("Evgeni Malkin", 1027, 38, 29));
+
+        teamFromName(allTeams, "Kings").addPlayer(new As3_Player("Anze Kopitar", 1030, 36, 21));
+        teamFromName(allTeams, "Kings").addPlayer(new As3_Player("Dustin Brown", 1031, 39, 17));
+        teamFromName(allTeams, "Avalanche").addPlayer(new As3_Player("Nathan MacKinnon", 1032, 28, 30));
+        teamFromName(allTeams, "Avalanche").addPlayer(new As3_Player("Cale Makar", 1020, 25, 23));
+        teamFromName(allTeams, "Bruins").addPlayer(new As3_Player("David Pastrnak", 1008, 33, 20));
+
+
+
+
         while (true) {
 
-            System.out.println("Press 1 to print a list of teams\nPress 2 to find the team with highest or lowest wins\nPress 3 to view teams in a divison\nPress 4 to sort by Wins \nPress 5 to update stats \nPress 6 to save and exit.");
+            System.out.println("Press 1 to print a list of teams\nPress 2 to find the team with highest or lowest wins\nPress 3 to view teams in a divison\nPress 4 to sort by Wins \nPress 5 to update stats \nPress 6 to print players. \n Press 7 to Save and exit.");
 
 
             int choice = Library.input.nextInt();
             Library.input.nextLine();
 
             if (choice == 1) {
-                for (int i = 0; i < allTeams.size(); i++) {
+                for(int i = 0; i < allTeams.size(); i++) {
                     System.out.println(allTeams.get(i));
                 }
 
@@ -62,33 +93,38 @@ public class As3_LeagueMain {
                 }
             }
             if (choice == 3) {
-                System.out.println(" What division are you looking for? ");
+                System.out.println("What division are you looking for?");
                 String response = Library.input.nextLine();
-            for(int i = 0; i<allTeams.size(); i++){
-                if(allTeams.get(i).getDivision().equals(response))
-                {
-                    System.out.println(allTeams.get(i));
+
+
+                for (As3_Team allTeam : allTeams) {
+                    if (allTeam.getDivision().equalsIgnoreCase(response)) {
+                        System.out.println(allTeam);
+
+                    }
                 }
             }
-
+            if (choice == 4) {
+                System.out.println("You have chosen to sort by Wins");
+                sortByWins(allTeams);
+                for (As3_Team allTeam : allTeams) {
+                    System.out.println(allTeam);
+                }
 
             }
-//            if (choice == 4) {
-//                System.out.println("You have chosen to sort by Wins");
-//                System.out.println("Do you want the highest first or lowest first");
-//                for(int i = 0; i<allTeams.size() -1 ; i++){
-//                    int i = lowestIndex;
-//                    for(int j = 0l j<allTeams.size(); j++) {
-//                        if (list.get(j).getWins() < list.get(lowestIndex).getAcres()) {
-//
-//
-//                        }
-//                    }
-//            }
             if (choice == 5) {
-                System.out.println("Not implemented Yet");
+                System.out.println("Add stats for a team");
+               updateStats(allTeams);
             }
             if (choice == 6) {
+                System.out.println("Print the players");
+                System.out.println("What team do you want to print?");
+                String response = Library.input.nextLine();
+//                for (int i = 0; i < allTeams.size(); i++) {
+//                    allTeams.get(i).printPlayer(allTeams);
+//                }
+  }
+            if (choice == 7 ){
                 saveFile("data/TeamsData.csv", allTeams);
                 break;
             }
@@ -97,6 +133,8 @@ public class As3_LeagueMain {
 
         }//while
     }
+
+
 
     public static void loadFile(String filename, ArrayList<As3_Team> list) {
 
@@ -111,7 +149,7 @@ public class As3_LeagueMain {
 //the next line is customized for whatever class you are creating.
 //Here we create a new STUDENT so there are 5 variables
 //Unfortunately, you need to Parse any variable that is not a String.  Integers, doubles and booleans are all demonstrated below.
-                list.add(new As3_Team(tempArray[0], tempArray[1], tempArray[3], Integer.parseInt(tempArray[2]), Integer.parseInt(tempArray[4]), Integer.parseInt(tempArray[5])));
+                list.add(new As3_Team(tempArray[0], tempArray[1], tempArray[2], Integer.parseInt(tempArray[3]), Integer.parseInt(tempArray[4]), Integer.parseInt(tempArray[5])));
 
             }
         } catch (IOException e) {
@@ -145,11 +183,83 @@ public class As3_LeagueMain {
 
     }//end saveFile
 
-public static void sortWins(){
+    public static void sortByWins(ArrayList<As3_Team> arr){
+        for(int i=0; i<arr.size()-1; i++){
+            int lowestIndex = i;
+            for(int j=i+1; j<arr.size(); j++){
+                if(arr.get(j).getWins() < arr.get(lowestIndex).getWins()){
+                    System.out.println(arr.get(j).getWins() + " vs lowestIndex " + arr.get(lowestIndex).getWins());
+                    lowestIndex = j;
+                }
+            }
+            //swap the data
+            As3_Team temp = arr.get(i);
+            arr.set(i, arr.get(lowestIndex));
+            arr.set(lowestIndex, temp);
+
+        }
+    }
+    static As3_Team teamFromName(ArrayList<As3_Team> list, String name){
+        for(int i = 0; i < list.size(); i++){
+            if(name.equalsIgnoreCase((list.get(i)).getNickname())){
+                return allTeams.get(i);
+            }
+        }
+        System.out.println("!!! no team with name "+name+" !!!");
+        return null;
+    }
+
+    public static void updateStats(ArrayList<As3_Team> allTeams) {
+        System.out.println("Enter the first team nickname:");
+        String team1Name = Library.input.nextLine();
+        System.out.println("Enter the second team nickname:");
+        String team2Name = Library.input.nextLine();
+        System.out.println("Enter the goals scored by " + team1Name + ":");
+        int team1Goals = Library.input.nextInt();
+        System.out.println("Enter the goals scored by " + team2Name + ":");
+        int team2Goals = Library.input.nextInt();
+        Library.input.nextLine();
+        int team1Index = -1;
+        int team2Index = -1;
+
+        for (int i = 0; i < allTeams.size(); i++) {
+            if (allTeams.get(i).getNickname().equalsIgnoreCase(team1Name)) {
+                team1Index = i;
+            } else if (allTeams.get(i).getNickname().equalsIgnoreCase(team2Name)) {
+                team2Index = i;
+            }
+        }
+
+        if (team1Index == -1 || team2Index == -1) {
+            System.out.println("One or both teams not found. Please try again.");
+            return;
+        }
+
+        As3_Team team1 = allTeams.get(team1Index);
+        As3_Team team2 = allTeams.get(team2Index);
+
+        // Increment games played for both teams
+        team1.setGamesPlayed(team1.getGamesPlayed() + 1);
+        team2.setGamesPlayed(team2.getGamesPlayed() + 1);
+
+        if (team1Goals > team2Goals) {
+            team1.setWins(team1.getWins() + 1);
+            team2.setLosses(team2.getLosses() + 1);
+            System.out.println(team1.getNickname() + " wins!");
+        } else if (team2Goals > team1Goals) {
+            team2.setWins(team2.getWins() + 1);
+            team1.setLosses(team1.getLosses() + 1);
+            System.out.println(team2.getNickname() + " wins!");
+        } else {
+            System.out.println("It's a draw! No team gets a win.");
+        }
+    }
 
 
 
-}
+
+
+
 
 
 

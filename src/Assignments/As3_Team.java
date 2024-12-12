@@ -1,6 +1,12 @@
 package Assignments;
+import java.util.ArrayList;
 
 public class As3_Team {
+
+    ArrayList<As3_Player> players = new ArrayList<>();
+
+
+
     private String Nickname;
     private String City;
     private String Division;
@@ -18,6 +24,14 @@ public class As3_Team {
         gamesPlayed = gp;
 
     }
+public void addPlayer(As3_Player player){
+
+players.add(player);
+
+}
+
+
+
 
     public String toString() {
         return " Name: " + Nickname + " City: " + City + " Division: " + Division + " Wins: " + Wins + " Losses: " + Losses + " Games Played: " + gamesPlayed;
@@ -47,12 +61,30 @@ public class As3_Team {
         return gamesPlayed;
     }
 
-    public void divisionFinder() {
 
+
+    public void setLosses(int losses) {
+        Losses = losses;
+    }
+
+    public void setWins(int wins) {
+        Wins = wins;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
     }
 
     public String getDivision() {
         return Division;
     }
+
+public String printPlayers(){
+
+return "happy";
+
+}
+
+
 }
 
