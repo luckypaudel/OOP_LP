@@ -43,7 +43,7 @@ public class As3_LeagueMain {
 
         while (true) {
 
-            System.out.println("Press 1 to print a list of teams\nPress 2 to find the team with highest or lowest wins\nPress 3 to view teams in a divison\nPress 4 to sort by Wins \nPress 5 to update stats \nPress 6 to print players. \n Press 7 to Save and exit.");
+            System.out.println("Press 1 to print a list of teams\nPress 2 to find the team with highest or lowest wins\nPress 3 to view teams in a divison\nPress 4 to sort by Wins \nPress 5 to update stats \nPress 6 to print players. \n Press 7 to print team stats \n Press 8 to add player stats \n Press 9 to save and exit");
 
 
             int choice = Library.input.nextInt();
@@ -120,11 +120,26 @@ public class As3_LeagueMain {
                 System.out.println("Print the players");
                 System.out.println("What team do you want to print?");
                 String response = Library.input.nextLine();
-//                for (int i = 0; i < allTeams.size(); i++) {
-//                    allTeams.get(i).printPlayer(allTeams);
-//                }
+
+                As3_Team team = teamFromName(allTeams, response);
+                if (team != null) {
+                    team.printPlayers();
+                } else {
+                    System.out.println("Team not found!");
+                }
+
   }
             if (choice == 7 ){
+                System.out.println("Print the total stats for the teams");
+                for (As3_Team allTeam : allTeams) {
+                    allTeam.printTeamTotals();
+                }
+            }
+            if (choice == 8){
+                updatePlayerStats(allTeams);
+
+            }
+            if(choice == 9){
                 saveFile("data/TeamsData.csv", allTeams);
                 break;
             }
@@ -202,7 +217,7 @@ public class As3_LeagueMain {
     static As3_Team teamFromName(ArrayList<As3_Team> list, String name){
         for(int i = 0; i < list.size(); i++){
             if(name.equalsIgnoreCase((list.get(i)).getNickname())){
-                return allTeams.get(i);
+                return list.get(i);
             }
         }
         System.out.println("!!! no team with name "+name+" !!!");
@@ -254,6 +269,46 @@ public class As3_LeagueMain {
             System.out.println("It's a draw! No team gets a win.");
         }
     }
+    public static void updatePlayerStats(ArrayList<As3_Team> allTeams){
+        System.out.println("Enter player name that you would like to change stats for");
+        String response = Library.input.nextLine();
+        System.out.println("How many goals does " + response +  " have now?");
+        boolean playerFound = false;
+        int newG = Library.input.nextInt();
+        Library.input.nextLine();
+        System.out.println("How many hits does " + response +  " have now?");
+        int newH = Library.input.nextInt();
+        Library.input.nextLine();
+for(As3_Team team: allTeams) {
+    for (As3_Player player : team.getPlayers()) {
+        if (player.getpName().equalsIgnoreCase(response)) {
+            player.updateStats(newG, newH);
+            System.out.println("Stats have been updated for " + player.getpName());
+             playerFound = true;
+            break;
+        }
+    }
+    if (playerFound)
+        break;
+
+
+}
+if(!playerFound){
+    System.out.println("Player was not found");
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

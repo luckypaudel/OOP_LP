@@ -79,12 +79,41 @@ players.add(player);
         return Division;
     }
 
-public String printPlayers(){
+public  void printPlayers(){
 
-return "happy";
+    if (players.isEmpty()) {
+        System.out.println("No players on this team.");
+    } else {
+        for (As3_Player player : players) {
+            System.out.println(player);
+        }
+    }
+}
+public int printTotalGoals(){
+        int totalGoals = 0;
+        for(As3_Player player: players){
+            totalGoals += player.getgScored();
+        }
+return totalGoals;
 
+}
+    public int printTotalHits(){
+        int totalHits = 0;
+        for(As3_Player player: players){
+            totalHits += player.getHits();
+        }
+        return totalHits;
+
+    }
+    public void printTeamTotals(){
+        System.out.println("Team: " + getNickname() + "has scored " + printTotalGoals () + " goals and has " + printTotalHits() + " hits ");
+
+    }
+
+    public ArrayList<As3_Player> getPlayers() {
+        return players;
+    }
 }
 
 
-}
 

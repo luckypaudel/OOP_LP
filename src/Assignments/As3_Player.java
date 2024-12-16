@@ -21,4 +21,25 @@ public class As3_Player {
         return pName + " , " + pId + " , " + gScored + ", " + Hits;
     }
 
+    public String getpName() {
+        return pName;
+    }
+
+    public int getgScored() {
+        return gScored;
+    }
+
+    public int getpId() {
+        return pId;
+    }
+
+    public int getHits() {
+        return Hits;
+    }
+
+    public void updateStats(int newgScored, int newHits){
+gScored = newgScored;
+Hits = newHits;
+    }
+
 }
